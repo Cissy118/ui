@@ -26,5 +26,6 @@
         app:itemTextColor="@android:color/white"
         app:menu="@menu/bottom_nav_menu" />
 
+
 </LinearLayout>
 
