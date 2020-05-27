@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private NavController navController;
+    DatabaseHelper videoDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
     navController =navHostFragment.getNavController();
        NavigationUI.setupWithNavController(navView,navController);
        NavigationUI.setupActionBarWithNavController(this,navController);
+
+
+       //video database
+        videoDb = new DatabaseHelper(this);
+
 }
 
     @Override
