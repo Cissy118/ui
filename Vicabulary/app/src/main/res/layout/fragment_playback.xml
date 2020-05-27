@@ -10,6 +10,14 @@
     <!-- video information -->
     <!--1.show movie clip, not sure with movie's dimssion-->
     <!-- 2. show subtitle -->
+    <VideoView
+        android:id="@+id/vidvw"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+
+        />
+
     <ImageView
         android:id="@+id/movie"
         android:layout_width="300dp"
