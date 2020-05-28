@@ -13,18 +13,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "video_table";
     public static final String VIDEO_ID = "ID";
     public static final String VIDEO_NAME = "NAME";
-    public static final String VIDEO_URL = "URL";
+    public static final String VIDEO_CLIP = "CLIP";
     public static final String VIDEO_SUBTITLE = "SUBTITLE";
     public static final String VIDEO_COVER = "COVER";
 
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, URL TEXT, SUBTITLE TEXT, COVER TEXT)");
+        db.execSQL("create table " + TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, CLIP TEXT, SUBTITLE TEXT, COVER TEXT)");
     }
 
     @Override
@@ -33,14 +34,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String name, String url, String subtitle, String cover) {
+    public boolean saveRecord(String name, String clip, String subtitle, String cover) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(VIDEO_NAME, name);
-        contentValues.put(VIDEO_URL, url);
+        contentValues.put(VIDEO_CLIP, clip);
         contentValues.put(VIDEO_SUBTITLE, subtitle);
         contentValues.put(VIDEO_COVER, cover);
         long result =  db.insert(TABLE_NAME, null, contentValues);
+        db.close();
         if (result == -1) {
             return false;
         }

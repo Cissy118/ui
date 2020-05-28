@@ -38,7 +38,14 @@ public class MainActivity extends AppCompatActivity {
 
 
        //video database
-        videoDb = new DatabaseHelper(this);
+        videoDb = new DatabaseHelper((this));
+        videoDb.onUpgrade(videoDb.getReadableDatabase(),1,1);
+        videoDb.saveRecord("Disney Zootopia", "s3://vicabulary-video/zootopia/Popsicle Clip - Disneys Zootopia.mp4",
+                "s3://vicabulary-video/zootopia/Popsicle Clip - Disneys Zootopia.en.srt",
+                "s3://vicabulary-video/zootopia/Popsicle Clip - Disneys Zootopia.jpg");
+        videoDb.saveRecord("Frozen", "s3://vicabulary-video/frozen/Idina Menzel AURORA - Into the Unknown (From Frozen 2).mp4",
+                "s3://vicabulary-video/frozen/Idina Menzel AURORA - Into the Unknown (From Frozen 2).en.srt",
+                "s3://vicabulary-video/frozen/Idina Menzel AURORA - Into the Unknown (From Frozen 2).jpg");
 
 }
 
