@@ -1,12 +1,15 @@
 package com.laioffer.vicabulary.ui.playback;
 
 import android.app.AlertDialog;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -25,12 +28,12 @@ import java.util.concurrent.CountedCompleter;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PlaybackFragment<FragmentHomeBinding> extends Fragment implements MediaPlayer.OnCompletionListener {
+public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implements MediaPlayer.OnCompletionListener {
 
     VideoView vw;
     private ArrayList<Integer> videolist = new ArrayList<>();
     private int currvideo = 0;
-    private FragmentHomeBinding binding;
+    private FragmentPlaybackBinding binding;
 
 
     public PlaybackFragment() {
@@ -38,22 +41,30 @@ public class PlaybackFragment<FragmentHomeBinding> extends Fragment implements M
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        vw = (VideoView) vw.findViewById();
-        vw.setMediaController(new MediaController(this));
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        vw = (VideoView) view.findViewById(R.id.vidvw);
+        vw.setMediaController(new MediaController(getActivity()));
         vw.setOnCompletionListener(this);
         videolist.add(R.raw.moana);
         videolist.add(R.raw.widow);
         setVideo(videolist.get(0));
     }
 
+<<<<<<< HEAD
     private void setContentView(int activity_main) {
+=======
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+>>>>>>> f70a024a7d440be5ad31d2ed83159366d9ccca5d
     }
 
     private void setVideo(Integer id) {
-        String uriPath = "android.resource:" + getPackageName() + "/" + id;
+        String uriPath = "android.resource://" + getActivity().getPackageName() + "/" + id;
+        Log.d("~~~~Playback Fragment","URi path: " + uriPath);
         Uri uri = Uri.parse(uriPath);
         vw.setVideoURI(uri);
         vw.start();
@@ -65,10 +76,42 @@ public class PlaybackFragment<FragmentHomeBinding> extends Fragment implements M
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        CountedCompleter binding = FragmentHomeBinding.inflate(inflater, container, false);
-             return binding.getRoot();
+        return inflater.inflate(R.layout.fragment_playback, container, false);
+
+//        vw.setMediaController(new MediaController(getActivity()));
+//        vw.setOnCompletionListener(this);
+//        videolist.add(R.raw.moana);
+//        videolist.add(R.raw.widow);
+//        setVideo(videolist.get(0);
     }
 
 
+    public void onCompletion(MediaPlayer mediapalyer)
+    {
+        AlertDialog.Builder obj = new AlertDialog.Builder(getActivity());
+        obj.setTitle("Playback Finished!");
+        obj.setIcon(R.mipmap.ic_launcher);
+        MyListener m = new MyListener();
+        obj.setPositiveButton("Replay", m);
+        obj.setNegativeButton("Next", m);
+        obj.setMessage("Want to replay or play next video?");
+        obj.show();
+    }
+
+    class MyListener implements DialogInterface.OnClickListener {
+        public void onClick(DialogInterface dialog, int which)
+        {
+            if (which == -1) {
+                vw.seekTo(0);
+                vw.start();
+            }
+            else {
+                ++currvideo;
+                if (currvideo == videolist.size())
+                    currvideo = 0;
+                setVideo(videolist.get(currvideo));
+            }
+        }
+    }
 }
 
