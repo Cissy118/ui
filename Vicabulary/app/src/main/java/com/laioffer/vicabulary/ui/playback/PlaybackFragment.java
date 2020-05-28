@@ -49,6 +49,9 @@ public class PlaybackFragment<FragmentHomeBinding> extends Fragment implements M
         setVideo(videolist.get(0));
     }
 
+    private void setContentView(int activity_main) {
+    }
+
     private void setVideo(Integer id) {
         String uriPath = "android.resource:" + getPackageName() + "/" + id;
         Uri uri = Uri.parse(uriPath);
