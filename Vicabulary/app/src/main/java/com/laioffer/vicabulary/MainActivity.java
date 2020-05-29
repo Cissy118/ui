@@ -1,21 +1,15 @@
 package com.laioffer.vicabulary;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.DialogInterface;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.widget.MediaController;
-import android.widget.VideoView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
+import com.laioffer.vicabulary.database.DatabaseHelper;
+import com.laioffer.vicabulary.database.VideoDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,13 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
        //video database
         videoDb = new DatabaseHelper((this));
-        videoDb.onUpgrade(videoDb.getReadableDatabase(),1,1);
-        videoDb.saveRecord("Disney Zootopia", "s3://vicabulary-video/zootopia/Popsicle Clip - Disneys Zootopia.mp4",
-                "s3://vicabulary-video/zootopia/Popsicle Clip - Disneys Zootopia.en.srt",
-                "s3://vicabulary-video/zootopia/Popsicle Clip - Disneys Zootopia.jpg");
-        videoDb.saveRecord("Frozen", "s3://vicabulary-video/frozen/Idina Menzel AURORA - Into the Unknown (From Frozen 2).mp4",
-                "s3://vicabulary-video/frozen/Idina Menzel AURORA - Into the Unknown (From Frozen 2).en.srt",
-                "s3://vicabulary-video/frozen/Idina Menzel AURORA - Into the Unknown (From Frozen 2).jpg");
+        VideoDatabase.CreateDatabase(videoDb);
+
 
 }
 
