@@ -63,7 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     
     
-    public void insertWord(String word, int time, String translation, String path){
+     public void insertWord(String word, int time, String translation, String path){
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -71,6 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("WORD", word);
         contentValues.put("TIME", time);
         contentValues.put("TRANSLATION", translation);
+        contentValues.put("PATH",path);
         db.insert(TABLE_NAME1, null, contentValues);
         db.close();
 
@@ -79,12 +80,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Word getWord(String word){
         SQLiteDatabase db = this.getWritableDatabase();
         Word w = new Word();
-        String selectQuery = "select v.name, v.time, v.translation from " + TABLE_NAME1 + "where v.name = " + word;
+        String selectQuery = "select v.word, v.time, v.translation, v.path from " + TABLE_NAME1 + "where v.name = " + word;
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()){
             w.setWord(cursor.getString(0));
             w.setTime(cursor.getInt(1));
             w.setTranslation(cursor.getString(2));
+            w.setPath(cursor.getString(3));
         }
         return w;
     }
