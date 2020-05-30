@@ -33,7 +33,7 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
     VideoView vw;
     private ArrayList<Integer> videolist = new ArrayList<>();
     private int currvideo = 0;
-    private FragmentPlaybackBinding binding;
+      private FragmentPlaybackBinding binding;
 
 
     public PlaybackFragment() {
@@ -51,15 +51,15 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
         setVideo(videolist.get(0));
     }
 
-<<<<<<< HEAD
+
     private void setContentView(int activity_main) {
-=======
+
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
->>>>>>> f70a024a7d440be5ad31d2ed83159366d9ccca5d
     }
 
     private void setVideo(Integer id) {
@@ -90,11 +90,13 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
     {
         AlertDialog.Builder obj = new AlertDialog.Builder(getActivity());
         obj.setTitle("Playback Finished!");
+//        obj.setTitle("catloaf");
         obj.setIcon(R.mipmap.ic_launcher);
         MyListener m = new MyListener();
         obj.setPositiveButton("Replay", m);
         obj.setNegativeButton("Next", m);
         obj.setMessage("Want to replay or play next video?");
+//        obj.setMessage("A cat loaf is your cat resembling a loaf of bread");
         obj.show();
     }
 
