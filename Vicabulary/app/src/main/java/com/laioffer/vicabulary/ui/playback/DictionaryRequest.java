@@ -17,15 +17,16 @@ import org.json.JSONObject;
 public class DictionaryRequest extends AsyncTask<String, Integer, String> {
 //    Context context;
 //    TextView showDef;
+    String input;
     String output;
 
 //    DictionaryRequest(Context context, TextView tV) {
 //        this.context = context;
 //        showDef = tV;
 //    }
-    DictionaryRequest(String input) {
-
-
+    DictionaryRequest(String in, String out) {
+        input = in;
+        output = out;
     }
 
 

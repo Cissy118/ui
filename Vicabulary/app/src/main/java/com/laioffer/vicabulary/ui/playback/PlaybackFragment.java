@@ -33,11 +33,6 @@ import java.util.concurrent.CountedCompleter;
 public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implements MediaPlayer.OnCompletionListener {
 
     VideoView vw;
-    String url;
-    String result;
-
-    private TextView showDef;
-    private EditText enterWord;
 
     private ArrayList<Integer> videolist = new ArrayList<>();
     private int currvideo = 0;
@@ -124,27 +119,6 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
         }
     }
 
-    private String dictionaryEntries(String input) {
-        final String language = "en-gb";
-        final String word = input;
-        final String fields = "definitions";
-        final String strictMatch = "false";
-        final String word_id = word.toLowerCase();
-        return "https://od-api.oxforddictionaries.com:443/api/v2/entries/" + language + "/" + word_id + "?" + "fields=" + fields + "&strictMatch=" + strictMatch;
-    }
 
-//    public void sendRequestOnClick(View view) {
-//        DictionaryRequest dR = new DictionaryRequest(this, showDef);
-//        url = dictionaryEntries();
-//        dR.execute(url);
-//    }
-
-    public void getDefinition(String input) {
-//        DictionaryRequest dR = new DictionaryRequest(this, showDef);
-        DictionaryRequest dR = new DictionaryRequest(input);
-        url = dictionaryEntries(input);
-        dR.execute(url);
-        Log.i("result :", result);
-    }
 }
 
