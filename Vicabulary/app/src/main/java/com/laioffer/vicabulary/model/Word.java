@@ -15,4 +15,8 @@ public class Word {
     public void setTime(int time){
         this.time = time;
     }
+    
+     public void setPath(String path){
+        this.path = path;
+    }
 }
