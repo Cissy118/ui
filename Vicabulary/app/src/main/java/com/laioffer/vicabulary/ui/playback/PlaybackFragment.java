@@ -51,15 +51,15 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
         setVideo(videolist.get(0));
     }
 
-<<<<<<< HEAD
+
     private void setContentView(int activity_main) {
-=======
+
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
->>>>>>> f70a024a7d440be5ad31d2ed83159366d9ccca5d
     }
 
     private void setVideo(Integer id) {
