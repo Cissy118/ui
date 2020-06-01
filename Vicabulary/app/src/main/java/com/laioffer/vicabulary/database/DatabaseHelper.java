@@ -41,8 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "NAME TEXT, PUBLISHER TEXT, DURATION STRING, CLIP TEXT, SUBTITLE TEXT, COVER TEXT)");
-        db.execSQL("drop table if exists " + TABLE_NAME1);
-        db.execSQL("create table " + TABLE_NAME1 + "(WORD TEXT PRIMARY KEY , TIME INTEGER, TRANSLATION TEXT, PATH TEXT)");
+       db.execSQL("create table if not exists " + TABLE_NAME1 + "(WORD TEXT PRIMARY KEY , TIME INTEGER, EXPLANATION TEXT, PATH TEXT)");
     }
 
     @Override
@@ -71,14 +70,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     
     
-     public void insertWord(String word, int time, String translation, String path){
+     public void insertWord(String word, int time, String explanation, String path){
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("WORD", word);
         contentValues.put("TIME", time);
-        contentValues.put("TRANSLATION", translation);
+        contentValues.put("EXPLANATION", explanation);
         contentValues.put("PATH",path);
         db.insert(TABLE_NAME1, null, contentValues);
         db.close();
@@ -88,12 +87,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Word getWord(String word){
         SQLiteDatabase db = this.getWritableDatabase();
         Word w = new Word();
-        String selectQuery = "select v.word, v.time, v.translation, v.path from " + TABLE_NAME1 + "where v.name = " + word;
+        String selectQuery = "select v.word, v.time, v.explanation, v.path from " + TABLE_NAME1 +
+                " v where v.word = " + "'"+ word + "'";
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToFirst()){
             w.setWord(cursor.getString(0));
             w.setTime(cursor.getInt(1));
-            w.setTranslation(cursor.getString(2));
+            w.setExplanation(cursor.getString(2));
             w.setPath(cursor.getString(3));
         }
         return w;
