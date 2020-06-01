@@ -10,33 +10,53 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.laioffer.vicabulary.R;
+import com.laioffer.vicabulary.model.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class SelectAdapter extends RecyclerView.Adapter<SelectAdapter.SelectViewHolder> {
+    private List<Movie> movies;
+
+    public SelectAdapter(List<Movie> movies) {
+        this.movies = movies;
+    }
 
     @Override
     public SelectViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.select_item, parent, false);
-        SelectViewHolder selectViewHolder = new SelectViewHolder(view);
-        return selectViewHolder;
+        return new SelectViewHolder(view);
     }
+
+//    @Override
+//    public void onBindViewHolder(@NonNull SelectViewHolder holder, int position) {
+//        int[] cover_set = {R.drawable.lion_king, R.drawable.ice_age, R.drawable.coco,
+//                R.drawable.mickey_mouse, R.drawable.frozen_2};
+//        String[] title_set = {"Lion King", "Ice Age", "Coco", "Mickey Mouse", "Frozen II"};
+//        holder.Cover.setImageResource(cover_set[position % cover_set.length]);
+//        holder.Button.setImageResource(R.drawable.ic_play_circle_filled_shallow_60dp);
+//        holder.Duration.setText("2:00");
+//        holder.Publisher.setText("Disney");
+//        holder.Title.setText(title_set[position % title_set.length]);
+//    }
 
     @Override
     public void onBindViewHolder(@NonNull SelectViewHolder holder, int position) {
-        int[] cover_set = {R.drawable.lion_king, R.drawable.ice_age, R.drawable.coco,
-                R.drawable.mickey_mouse, R.drawable.frozen_2};
-        String[] title_set = {"Lion King", "Ice Age", "Coco", "Mickey Mouse", "Frozen II"};
-        holder.Cover.setImageResource(cover_set[position % cover_set.length]);
+        Movie movie = movies.get(position);
+        if (movie.getCover() == null) {
+            holder.Cover.setImageResource(R.drawable.ice_age);
+        } else {
+            Picasso.get().load(movie.getCover()).into(holder.Cover);
+        }
         holder.Button.setImageResource(R.drawable.ic_play_circle_filled_shallow_60dp);
-        holder.Duration.setText("2:00");
-        holder.Publisher.setText("Disney");
-        holder.Title.setText(title_set[position % title_set.length]);
+        holder.Duration.setText(movie.getDuration());
+        holder.Publisher.setText(movie.getPublisher());
+        holder.Title.setText(movie.getName());
     }
 
     @Override
     public int getItemCount() {
-        return 20;
+        return movies.size();
     }
 
 

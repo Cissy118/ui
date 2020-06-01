@@ -13,7 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.laioffer.vicabulary.R;
+import com.laioffer.vicabulary.database.DatabaseAdapter;
+import com.laioffer.vicabulary.database.DatabaseHelper;
 import com.laioffer.vicabulary.databinding.FragmentSelectBinding;
+import com.laioffer.vicabulary.model.Movie;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,11 +45,14 @@ public class SelectFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        List<Movie> movies = new ArrayList<>();
 
-        SelectAdapter movieAdapter = new SelectAdapter();
+        DatabaseAdapter databaseAdapter = new DatabaseAdapter();
+        SelectAdapter movieAdapter = new SelectAdapter(movies);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         binding.recyclerView.setHasFixedSize(true);
         binding.recyclerView.setLayoutManager(gridLayoutManager);
         binding.recyclerView.setAdapter(movieAdapter);
     }
+
 }
