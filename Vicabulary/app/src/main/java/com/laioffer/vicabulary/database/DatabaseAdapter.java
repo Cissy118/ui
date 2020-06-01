@@ -3,6 +3,7 @@ package com.laioffer.vicabulary.database;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.laioffer.vicabulary.model.Movie;
 
@@ -12,14 +13,15 @@ import java.util.List;
 public class DatabaseAdapter {
     private DatabaseHelper dbHelper;
 
-    public static void main(String[] args) {
-        DatabaseAdapter
+    public DatabaseAdapter(Context context) {
+        this.dbHelper = new DatabaseHelper(context);
     }
+
 
     public List<Movie> getAllMovies() {
         List<Movie> movies = new ArrayList<>();
-        String query = "SELECT * FROM " + dbHelper.TABLE_NAME;
         VideoDatabase.CreateDatabase(dbHelper);
+        String query = "SELECT * FROM " + dbHelper.TABLE_NAME;
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()) {
@@ -38,6 +40,9 @@ public class DatabaseAdapter {
             String subtitle = cursor.getString(index6);
             String cover = cursor.getString(index7);
             movies.add(new Movie(id, name, publisher, duration, clip, subtitle, cover));
+        }
+        for (Movie movie: movies) {
+            Log.d("movies", movie.toString());
         }
         return movies;
     }

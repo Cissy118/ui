@@ -45,26 +45,26 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintHorizontal_weight="1"
         android:textColor="#000"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@id/cover"
-        app:layout_constraintLeft_toLeftOf="@id/cover"
         tools:text="Lion King" />
 
 
     <TextView
         android:id="@+id/publisher"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintHorizontal_weight="1"
-        android:background="#bfff"
+        android:textColor="#000"
         android:textSize="14sp"
-        app:layout_constraintRight_toRightOf="@id/cover"
-        app:layout_constraintTop_toBottomOf="@id/cover"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/title"
         tools:text="Disney" />
 
 
