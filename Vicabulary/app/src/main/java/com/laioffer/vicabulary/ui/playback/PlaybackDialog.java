@@ -14,11 +14,12 @@ public class PlaybackDialog extends DialogFragment {
     String url;
     String dialog_message;
     String dialog_title;
+    DatabaseHelper db;
 
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
+        db = MainActivity.videoDb;
 //        builder.setMessage(R.string.dialog_message)
 //                .setTitle(R.string.dialog_title);
         builder.setMessage("catloaf is a loaf of cat")
@@ -26,6 +27,13 @@ public class PlaybackDialog extends DialogFragment {
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
+                public void saveWord(String word, String explanation, String path){
+                     if(db.getWord(word).getWord() == null) {
+                    int time = vw.getCurrentPosition();
+                    db.insertWord(word, time, explanation, path);
+            }
+
+    }
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
