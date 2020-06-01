@@ -10,7 +10,9 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.fragment.app.Fragment;
@@ -31,6 +33,7 @@ import java.util.concurrent.CountedCompleter;
 public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implements MediaPlayer.OnCompletionListener {
 
     VideoView vw;
+
     private ArrayList<Integer> videolist = new ArrayList<>();
     private int currvideo = 0;
       private FragmentPlaybackBinding binding;
@@ -115,5 +118,7 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
             }
         }
     }
+
+
 }
 
