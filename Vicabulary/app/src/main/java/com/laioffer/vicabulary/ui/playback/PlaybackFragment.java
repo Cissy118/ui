@@ -36,7 +36,7 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
 
     private ArrayList<Integer> videolist = new ArrayList<>();
     private int currvideo = 0;
-      private FragmentPlaybackBinding binding;
+    private FragmentPlaybackBinding binding;
 
 
     public PlaybackFragment() {
@@ -58,6 +58,7 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
     private void setContentView(int activity_main) {
 
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,12 +68,11 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
 
     private void setVideo(Integer id) {
         String uriPath = "android.resource://" + getActivity().getPackageName() + "/" + id;
-        Log.d("~~~~Playback Fragment","URi path: " + uriPath);
+        Log.d("~~~~Playback Fragment", "URi path: " + uriPath);
         Uri uri = Uri.parse(uriPath);
         vw.setVideoURI(uri);
         vw.start();
     }
-
 
 
     @Override
@@ -89,36 +89,49 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
     }
 
 
-    public void onCompletion(MediaPlayer mediapalyer)
-    {
-        AlertDialog.Builder obj = new AlertDialog.Builder(getActivity());
-        obj.setTitle("Playback Finished!");
-//        obj.setTitle("catloaf");
-        obj.setIcon(R.mipmap.ic_launcher);
-        MyListener m = new MyListener();
-        obj.setPositiveButton("Replay", m);
-        obj.setNegativeButton("Next", m);
-        obj.setMessage("Want to replay or play next video?");
-//        obj.setMessage("A cat loaf is your cat resembling a loaf of bread");
-        obj.show();
-    }
-
-    class MyListener implements DialogInterface.OnClickListener {
-        public void onClick(DialogInterface dialog, int which)
-        {
-            if (which == -1) {
-                vw.seekTo(0);
-                vw.start();
+    public void onCompletion(MediaPlayer mediapalyer) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Playback Finished!");
+        builder.setMessage("Want to replay or play next video?");
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setPositiveButton(R.string.restart, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                if (id == -1) {
+                    vw.seekTo(0);
+                    vw.start();
+                }
             }
-            else {
+        });
+
+
+        builder.setNegativeButton(R.string.next, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
                 ++currvideo;
                 if (currvideo == videolist.size())
                     currvideo = 0;
                 setVideo(videolist.get(currvideo));
             }
-        }
+
+        });
+        builder.create().show();
+
+
+//    class MyListener implements DialogInterface.OnClickListener {
+//        public void onClick(DialogInterface dialog, int which)
+//        {
+//            if (which == -1) {
+//                vw.seekTo(0);
+//                vw.start();
+//            }
+//            else {
+//                ++currvideo;
+//                if (currvideo == videolist.size())
+//                    currvideo = 0;
+//                setVideo(videolist.get(currvideo));
+//            }
+//        }
+//    }
+
+
     }
-
-
 }
-

@@ -25,7 +25,7 @@ public class PlaybackDialog extends DialogFragment {
                 .setTitle("catloaf");
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // User clicked OK button
+                // User clicked OK button and save word to database
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
