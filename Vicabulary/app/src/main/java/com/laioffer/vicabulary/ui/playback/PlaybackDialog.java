@@ -27,11 +27,7 @@ public class PlaybackDialog extends DialogFragment {
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
-                public void saveWord(String word, String explanation, String path){
-                     if(db.getWord(word).getWord() == null) {
-                    int time = vw.getCurrentPosition();
-                    db.insertWord(word, time, explanation, path);
-            }
+             saveWord(word, explanation, path);
 
     }
             }
@@ -68,5 +64,9 @@ public class PlaybackDialog extends DialogFragment {
         Log.i("result :", dialog_message);
     }
 
-
+     public void saveWord(String word, String explanation, String path){
+             if(db.getWord(word).getWord() == null) {
+                 int time = vw.getCurrentPosition();
+                 db.insertWord(word, time, explanation, path);
+            }
 }
