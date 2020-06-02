@@ -2,13 +2,10 @@ package com.laioffer.vicabulary.database;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
-
-import com.laioffer.vicabulary.model.Word;
 
 import java.sql.Time;
 
@@ -20,8 +17,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME1 = "vocabulary_table";
     public static final String VIDEO_ID = "ID";
     public static final String VIDEO_NAME = "NAME";
-    public static final String VIDEO_PUBLISHER = "PUBLISHER";
-    public static final String VIDEO_DURATION = "DURATION";
+    public static final  String VIDEO_PUBLISHER = "PUBLISHER";
+    public static final  String VIDEO_DURATION = "DURATION";
     public static final String VIDEO_CLIP = "CLIP";
     public static final String VIDEO_SUBTITLE = "SUBTITLE";
     public static final String VIDEO_COVER = "COVER";
@@ -31,9 +28,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, 1);
 
     }
-
-
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -57,36 +51,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(VIDEO_CLIP, clip);
         contentValues.put(VIDEO_SUBTITLE, subtitle);
         contentValues.put(VIDEO_COVER, cover);
-        long result = db.insert(TABLE_NAME, null, contentValues);
+        long result =  db.insert(TABLE_NAME, null, contentValues);
         db.close();
         if (result == -1) {
             return false;
-        } else {
+        }
+        else {
             return true;
         }
     }
-
     
-     public void insertWord(String word, int time, String explanation, String path, String translation){
+    
+     public void insertWord(String word, int time, String explanation, String path){
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("WORD", word);
         contentValues.put("TIME", time);
-
-        contentValues.put("TRANSLATION", translation);
-        contentValues.put("PATH", path);
-
         contentValues.put("EXPLANATION", explanation);
         contentValues.put("PATH",path);
-
         db.insert(TABLE_NAME1, null, contentValues);
         db.close();
 
     }
-
-
 
     public Word getWord(String word){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -103,4 +91,3 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return w;
     }
 }
-
