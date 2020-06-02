@@ -12,9 +12,9 @@ import java.util.List;
 public class DatabaseAdapter {
     private DatabaseHelper dbHelper;
 
-    public static void main(String[] args) {
-        DatabaseAdapter
-    }
+//    public static void main(String[] args) {
+//        DatabaseAdapter
+//    }
 
     public List<Movie> getAllMovies() {
         List<Movie> movies = new ArrayList<>();

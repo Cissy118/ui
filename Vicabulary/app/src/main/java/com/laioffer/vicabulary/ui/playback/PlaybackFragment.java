@@ -1,23 +1,20 @@
 package com.laioffer.vicabulary.ui.playback;
-
-import android.app.AlertDialog;
-
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.media.TimedText;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.EditText;
+
 import android.widget.MediaController;
-import android.widget.TextView;
+
 import android.widget.VideoView;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,9 +36,15 @@ import java.util.concurrent.CountedCompleter;
 /**
  * A simple {@link Fragment} subclass.
  */
+<<<<<<< HEAD
 public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implements MediaPlayer.OnTimedTextListener,
         MediaPlayer.OnCompletionListener {
     private static final String TAG = "TimedTextTest";
+=======
+public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment
+        implements MediaPlayer.OnCompletionListener {
+
+>>>>>>> c8a779db0b31e57d23a04a3c46df3a7ec77a50b4
     VideoView vw;
     private TextView txtDisplay;
     private static Handler handler = new Handler();
@@ -49,7 +52,7 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
 
     private ArrayList<Integer> videolist = new ArrayList<>();
     private int currvideo = 0;
-      private FragmentPlaybackBinding binding;
+    private FragmentPlaybackBinding binding;
 
 
     public PlaybackFragment() {
@@ -61,6 +64,7 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
         super.onViewCreated(view, savedInstanceState);
         vw = (VideoView) view.findViewById(R.id.vidvw);
         vw.setMediaController(new MediaController(getActivity()));
+<<<<<<< HEAD
         vw.setOnCompletionListener(this);
         //videolist.add(R.raw.moana);
         //videolist.add(R.raw.widow);
@@ -144,27 +148,37 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
         while ((length = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, length);
         }
+=======
+        videolist.add(R.raw.moana);
+        videolist.add(R.raw.widow);
+        vw.setOnCompletionListener(this);
+        setVideo(videolist.get(0));
+>>>>>>> c8a779db0b31e57d23a04a3c46df3a7ec77a50b4
     }
 
-
+    public void onCompletion(MediaPlayer mp) {
+        Log.d("PlaybackFragment","~~~~~~~~~~~~~~~~~~~onCompletion");
+//        DialogFragment df = FinishDialog.newInstance(R.id.vidvw);
+//        df.show(getFragmentManager(), "dialog");
+        DialogFragment df = WordDialog.newInstance(R.id.vidvw);
+        df.show(getFragmentManager(), "dialog");
+    }
     private void setContentView(int activity_main) {
 
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     private void setVideo(Integer id) {
         String uriPath = "android.resource://" + getActivity().getPackageName() + "/" + id;
-        Log.d("~~~~Playback Fragment","URi path: " + uriPath);
+        Log.d("~~~~Playback Fragment", "URi path: " + uriPath);
         Uri uri = Uri.parse(uriPath);
         vw.setVideoURI(uri);
         //vw.start();
     }
-
 
 
     @Override
@@ -172,28 +186,8 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_playback, container, false);
-
-//        vw.setMediaController(new MediaController(getActivity()));
-//        vw.setOnCompletionListener(this);
-//        videolist.add(R.raw.moana);
-//        videolist.add(R.raw.widow);
-//        setVideo(videolist.get(0);
     }
-
-
-    public void onCompletion(MediaPlayer mediapalyer)
-    {
-        AlertDialog.Builder obj = new AlertDialog.Builder(getActivity());
-        obj.setTitle("Playback Finished!");
-//        obj.setTitle("catloaf");
-        obj.setIcon(R.mipmap.ic_launcher);
-        MyListener m = new MyListener();
-        obj.setPositiveButton("Replay", m);
-        obj.setNegativeButton("Next", m);
-        obj.setMessage("Want to replay or play next video?");
-//        obj.setMessage("A cat loaf is your cat resembling a loaf of bread");
-        obj.show();
-    }
+<<<<<<< HEAD
 
     @Override
     public void onTimedText(final MediaPlayer mp, final TimedText text) {
@@ -234,3 +228,6 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
 
 }
 
+=======
+}
+>>>>>>> c8a779db0b31e57d23a04a3c46df3a7ec77a50b4

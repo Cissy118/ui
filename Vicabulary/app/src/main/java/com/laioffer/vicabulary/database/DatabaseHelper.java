@@ -2,10 +2,13 @@ package com.laioffer.vicabulary.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.laioffer.vicabulary.model.Word;
 
 import java.sql.Time;
 
