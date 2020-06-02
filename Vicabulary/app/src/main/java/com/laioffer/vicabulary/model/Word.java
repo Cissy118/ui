@@ -11,8 +11,7 @@ public class Word {
     }
 
 
-    public void setTranslation(String translation) {
-        this.translation = translation;
+
 
     public void setExplanation(String explanation){
         this.explanation = explanation;
@@ -39,7 +38,6 @@ public class Word {
     }
 
 
-    public void setPath(String path) {
 
     public void setPath(String path){
         this.path = path;
