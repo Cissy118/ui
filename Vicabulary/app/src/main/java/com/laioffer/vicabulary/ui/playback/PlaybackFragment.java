@@ -1,6 +1,7 @@
 package com.laioffer.vicabulary.ui.playback;
 import androidx.annotation.Nullable;
 
+import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.media.TimedText;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.util.Log;
 
 import android.widget.MediaController;
 
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.fragment.app.DialogFragment;
@@ -36,15 +38,11 @@ import java.util.concurrent.CountedCompleter;
 /**
  * A simple {@link Fragment} subclass.
  */
-<<<<<<< HEAD
+
 public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implements MediaPlayer.OnTimedTextListener,
         MediaPlayer.OnCompletionListener {
     private static final String TAG = "TimedTextTest";
-=======
-public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment
-        implements MediaPlayer.OnCompletionListener {
 
->>>>>>> c8a779db0b31e57d23a04a3c46df3a7ec77a50b4
     VideoView vw;
     private TextView txtDisplay;
     private static Handler handler = new Handler();
@@ -64,7 +62,6 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment
         super.onViewCreated(view, savedInstanceState);
         vw = (VideoView) view.findViewById(R.id.vidvw);
         vw.setMediaController(new MediaController(getActivity()));
-<<<<<<< HEAD
         vw.setOnCompletionListener(this);
         //videolist.add(R.raw.moana);
         //videolist.add(R.raw.widow);
@@ -148,12 +145,7 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment
         while ((length = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, length);
         }
-=======
-        videolist.add(R.raw.moana);
-        videolist.add(R.raw.widow);
-        vw.setOnCompletionListener(this);
-        setVideo(videolist.get(0));
->>>>>>> c8a779db0b31e57d23a04a3c46df3a7ec77a50b4
+
     }
 
     public void onCompletion(MediaPlayer mp) {
@@ -187,7 +179,7 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_playback, container, false);
     }
-<<<<<<< HEAD
+
 
     @Override
     public void onTimedText(final MediaPlayer mp, final TimedText text) {
@@ -228,6 +220,5 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment
 
 }
 
-=======
-}
->>>>>>> c8a779db0b31e57d23a04a3c46df3a7ec77a50b4
+
+
