@@ -1,5 +1,6 @@
 package com.laioffer.vicabulary.ui.select;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,8 +26,6 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class SelectFragment extends Fragment {
-
-    private SelectViewModel viewModel;
     private FragmentSelectBinding binding;
 
     public SelectFragment() {
@@ -45,9 +44,8 @@ public class SelectFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        List<Movie> movies = new ArrayList<>();
-
-        DatabaseAdapter databaseAdapter = new DatabaseAdapter();
+        DatabaseAdapter databaseAdapter = new DatabaseAdapter(getContext());
+        List<Movie> movies = databaseAdapter.getAllMovies();
         SelectAdapter movieAdapter = new SelectAdapter(movies);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         binding.recyclerView.setHasFixedSize(true);

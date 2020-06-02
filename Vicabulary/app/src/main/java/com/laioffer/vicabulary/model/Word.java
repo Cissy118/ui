@@ -6,9 +6,14 @@ public class Word {
     private int time;
     private String path;
 
-    public void setWord(String word){
+    public void setWord(String word) {
         this.word = word;
     }
+
+
+    public void setTranslation(String translation) {
+        this.translation = translation;
+
     public void setExplanation(String explanation){
         this.explanation = explanation;
     }
@@ -26,11 +31,16 @@ public class Word {
 
     public int getTime(){
         return time;
+
     }
 
-    public void setTime(int time){
+    public void setTime(int time) {
         this.time = time;
     }
+
+
+    public void setPath(String path) {
+
     public void setPath(String path){
         this.path = path;
     }

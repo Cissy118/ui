@@ -14,7 +14,7 @@ import com.laioffer.vicabulary.database.VideoDatabase;
 public class MainActivity extends AppCompatActivity {
 
     private NavController navController;
-    DatabaseHelper videoDb;
+    public static DatabaseHelper videoDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
