@@ -8,7 +8,9 @@ import android.util.Log;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import com.laioffer.vicabulary.MainActivity;
 import com.laioffer.vicabulary.R;
+import com.laioffer.vicabulary.database.DatabaseHelper;
 
 public class PlaybackDialog extends DialogFragment {
     String url;
@@ -27,18 +29,20 @@ public class PlaybackDialog extends DialogFragment {
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
-             saveWord(word, explanation, path);
+                saveWord(word, explanation, path);
             }
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User cancelled the dialog
-            }
-        });
-        // Create the AlertDialog object and return it
-        return builder.create();
+        }
+    });
+        builder.setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener()
+
+    {
+        public void onClick (DialogInterface dialog,int id){
+        // User cancelled the dialog
     }
+    });
+    // Create the AlertDialog object and return it
+        return builder.create();
+}
 
     public void capture() {
         DialogFragment newFragment = new PlaybackDialog();
@@ -63,9 +67,9 @@ public class PlaybackDialog extends DialogFragment {
         Log.i("result :", dialog_message);
     }
 
-     public void saveWord(String word, String explanation, String path){
-             if(db.getWord(word).getWord() == null) {
-                 int time = vw.getCurrentPosition();
-                 db.insertWord(word, time, explanation, path);
-            }
-}
+    public void saveWord(String word, String explanation, String path) {
+        if (db.getWord(word).getWord() == null) {
+            int time = vw.getCurrentPosition();
+            db.insertWord(word, time, explanation, path);
+        }
+    }

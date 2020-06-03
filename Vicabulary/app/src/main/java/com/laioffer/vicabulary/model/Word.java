@@ -14,8 +14,9 @@ public class Word {
 
     public void setTranslation(String translation) {
         this.translation = translation;
+    }
 
-    public void setExplanation(String explanation){
+    public void setExplanation (String explanation){
         this.explanation = explanation;
     }
 
@@ -27,11 +28,11 @@ public class Word {
         return explanation;
     }
 
-    public String getPath(){
+    public String getPath() {
         return path;
     }
 
-    public int getTime(){
+    public int getTime() {
         return time;
     }
 
@@ -43,3 +44,5 @@ public class Word {
         this.path = path;
     }
 }
+
+
