@@ -28,8 +28,7 @@ public class PlaybackDialog extends DialogFragment {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
              saveWord(word, explanation, path);
-
-    }
+            }
             }
         });
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

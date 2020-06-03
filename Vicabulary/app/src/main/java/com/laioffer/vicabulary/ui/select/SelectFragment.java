@@ -28,6 +28,9 @@ import java.util.List;
 public class SelectFragment extends Fragment {
     private FragmentSelectBinding binding;
 
+
+
+
     public SelectFragment() {
         // Required empty public constructor
     }

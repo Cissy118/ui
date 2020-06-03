@@ -7,6 +7,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 
+import com.amazonaws.mobile.client.AWSMobileClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.laioffer.vicabulary.database.DatabaseHelper;
 import com.laioffer.vicabulary.database.VideoDatabase;
@@ -34,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
        //video database
         videoDb = new DatabaseHelper((this));
         VideoDatabase.CreateDatabase(videoDb);
-
 
 }
 

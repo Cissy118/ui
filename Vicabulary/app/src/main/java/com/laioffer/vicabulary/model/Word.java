@@ -3,6 +3,7 @@ package com.laioffer.vicabulary.model;
 public class Word {
     private String word;
     private String explanation;
+    private String translation;
     private int time;
     private String path;
 
@@ -17,11 +18,12 @@ public class Word {
     public void setExplanation(String explanation){
         this.explanation = explanation;
     }
-    public String getWord(){
+
+    public String getWord() {
         return word;
     }
 
-    public String getExplanation(){
+    public String getExplanation() {
         return explanation;
     }
 
@@ -31,17 +33,13 @@ public class Word {
 
     public int getTime(){
         return time;
-
     }
 
     public void setTime(int time) {
         this.time = time;
     }
 
-
     public void setPath(String path) {
-
-    public void setPath(String path){
         this.path = path;
     }
 }
