@@ -66,7 +66,7 @@ public class PlaybackFragment<FragmentPlaybackBinding> extends Fragment implemen
         //videolist.add(R.raw.moana);
         //videolist.add(R.raw.widow);
         //setVideo(videolist.get(0));
-        setVideo(R.id.subtitle);
+        setVideo(R.raw.video);
         txtDisplay = (TextView) getActivity().findViewById(R.id.subtitle);
         MediaPlayer player = MediaPlayer.create(getContext(), R.raw.video);
         player.setVolume(0,0);
